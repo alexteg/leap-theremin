@@ -16,11 +16,25 @@
   var gainNode = audioContext.createGain();
   var oscillator = audioContext.createOscillator();
 
+  // oscillator.connect(audioContext.destination);
+
   oscillator.connect(gainNode);
   gainNode.connect(audioContext.destination);
   gainNode.gain.value = 0;
 
   oscillator.start();
+
+  // var osc2 = audioContext.createOscillator();
+  // osc2.connect(audioContext.destination);
+  // osc2.start();
+
+  // // Create a gain node.
+  // var gainNode = audioContext.createGain();
+  // // Connect the source to the gain node.
+  // osc.connect(gainNode);
+  // // Connect the gain node to the destination.
+  // gainNode.connect(audioContext.destination);
+  // gainNode.gain.value = 0;
 
   // Setup Leap loop with frame callback function
   var controllerOptions = {enableGestures: true};
@@ -31,6 +45,8 @@
       var fingerPositionX = frame.fingers[1].dipPosition[0];
       var frequency = limit(fingerPositionX + 300, 0, 600);
       frequency = Math.round(frequency * 2 + 30);
+
+      // osc2.frequency.value = frequency + 50;
 
       var fingerPositionY = frame.fingers[1].dipPosition[1];
       fingerPositionY = limit(fingerPositionY, 0, 300);
